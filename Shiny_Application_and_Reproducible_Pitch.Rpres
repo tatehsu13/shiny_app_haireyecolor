@@ -1,0 +1,61 @@
+Shiny Application and Reproducible Pitch
+========================================================
+author: Tom H.
+date: 12 February, 2017
+autosize: true
+
+Overview
+========================================================
+
+This application was created to demostrate distribution of hair and eye color and sex for students.
+It was built as part of a deliverable for Coursear course **Developing Data Products**
+
+The app developed for the first part of the assignment demo is avalilable at:
+https://tatehsu13.shinyapps.io/shiny_app_haireyecolor/
+
+Source code for ui.R and server.R files are available on the GitHub repo:
+https://github.com/tatehsu13/shiny_app_haireyecolor
+
+Shiny Application
+========================================================
+
+Application uses the data set, HairEyeColor [Hair and Eye Color of Statistics Students]
+
+## ui.R
+The app is divided into 2 panels -
+* Sidebar panel: User can select for hair color and sex. Option to select color for bar plot is also provided
+* Main panel: Displays the bar plot, and selection details
+
+## server.R
+* User selected variables for hair color, sex and chart color are detected.
+* Selection is applied to the data set and applied to barchart and user selected color is applied.
+
+
+HairEyeColor Dataset
+========================================================
+Summary
+
+```{r, echo=FALSE}
+summary(HairEyeColor)
+```
+
+Sample dataset
+```{r, echo=FALSE}
+hecdf <- data.frame(HairEyeColor)
+head(hecdf,3)
+```
+
+### Hair and Eye Color of Statistics Students(3 variables )
+* Hair - 	Black, Brown, Red, Blond
+* Eye	 -  Brown, Blue, Hazel, Green
+* Sex	 -  Male, Female
+
+Plot
+========================================================
+
+User input is applied to the overall data set. The filtered data based on user selection is represented as bar chart.
+```{r, echo=FALSE}
+t2 <- subset(hecdf,Hair== "Black" & Sex == "Male" ,select = c(Eye, Freq))
+barplot(t2$Freq,names.arg = t2$Eye,col = "Brown")
+```
+
